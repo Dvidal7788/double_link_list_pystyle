@@ -1,0 +1,159 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <stdint.h>
+#include <string.h>
+#include <strings.h>
+#include <time.h>
+
+// // Declare struct
+typedef struct node {
+    char *s;
+    struct node *prev;
+    struct node *next;
+} node;
+
+
+// // Function Prototypes
+// void print_list(node *head, char *file_name);
+// void free_list(node *head);
+// bool append_error_log(int8_t n, char *msg);
+void if_error(int8_t n, char *msg, node *head);
+// void free_unused_node(node *n);
+// void write_to_file(node *head, char *file_name);
+// void append_to_file(node *head, node *last, char *file_name);
+
+
+///////////////////////////////////////////////////////////
+//          ~~ FUNCTION DEFINITIONS ~~
+//////////////////////////////////////////////////////////
+
+//          -- WRITE TO FILE --
+void write_to_file(node *head, char *file_name)
+{
+    // Open file
+    FILE *file = fopen(file_name, "w");
+    if (file == NULL) {
+        char msg[sizeof(char)*150];
+        sprintf(msg, "Failure while writing list to \"%s\"", file_name);
+        if_error(6, msg, head);
+    }
+
+    node *tmp = head;
+    while (tmp != NULL) {
+        fprintf(file, "%s\n", tmp->s);
+        tmp = tmp->next;
+    }
+
+    fclose(file);
+    file = NULL;
+    tmp = NULL;
+    return;
+}
+
+
+//          -- APPEND TO FILE --
+void append_to_file(node *head, node *last, char *file_name)
+{
+    // Open file
+    FILE *file = fopen(file_name, "a");
+    if (file == NULL) {
+        char msg[sizeof(char)*150];
+        sprintf(msg, "Failure while appending last item in list to \"%s\"", file_name);
+        if_error(5, msg, head);
+    }
+
+    // Append
+    fprintf(file, "%s\n", last->s);
+
+    // Close file
+    fclose(file);
+    file = NULL;
+    return;
+}
+
+//          -- PRINT LIST --
+void print_list(node *head, char *file_name)
+{
+    node *tmp = head;
+    printf("\n\n\t\t\t\t~~~~ CREATE YOUR OWN LIST ~~~~\n%s :\n\n[", file_name);
+    while (tmp != NULL)
+    {
+        if (tmp->next == NULL) {
+            printf("\'%s\'", tmp->s);
+        }
+        else printf("\'%s\', ", tmp->s);
+
+        tmp = tmp->next;
+    }
+    printf("]\n\n");
+    tmp = head = NULL;
+    file_name = NULL;
+    return;
+}
+
+//          -- FREE LIST --
+void free_list(node *head)
+{
+    node *tmp = NULL;
+    while (head != NULL)
+    {
+        tmp = head->next;
+        free(head->s);
+        head->s = NULL;
+        head->prev = head->next = NULL;
+        free(head);
+        head = tmp;
+    }
+
+    head = tmp = NULL;
+    return;
+}
+
+//          -- IF ERROR --
+void if_error(int8_t n, char *msg, node *head)
+{
+    free_list(head);
+
+    // Print error message
+    printf("\n** ERROR # %i: %s **\n\n", n, msg);
+
+    // Append to error_log.csv
+    // Open file
+    FILE *log_file = fopen("error_log.csv", "a");
+    if (log_file == NULL) {msg = NULL; head = NULL; exit(-1);}
+
+    // Time
+    time_t t;
+    t = time(0);
+    uint8_t l = strlen(ctime(&t));
+
+    // ctime() returns pointer to static buffer. Can not free() it.
+    char *timestamp = ctime(&t);
+
+    // Cut off 2 '\n's at the end of string
+    timestamp[l-2] = '\0';
+
+    // Append to file
+    signed int print_return = 0;
+    if ((print_return = fprintf(log_file, "%i, %s, %s\n", n, msg, timestamp)) < 0) {
+        msg = timestamp = NULL;
+        exit(-2);
+    }
+
+    fclose(log_file);
+    log_file = NULL;
+    msg = timestamp = NULL;
+    head = NULL;
+    exit(n);
+}
+//          -- FREE CURRENT NODE --
+void free_unused_node(node *n)
+{
+    free(n->s);
+    n->s = NULL;
+    n->prev = n->next = NULL;
+    free(n);
+    n = NULL;
+    return;
+}
