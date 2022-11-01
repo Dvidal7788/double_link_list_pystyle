@@ -1,7 +1,7 @@
 # double_link_list_pystyle
 // DOUBLE LINK LIST (written in C)
 
-    // Written in C)
+    // Written in C
     // * Prints in style of Python list[]: ['item1', 'item2', ...]
     // * Appends list item by item to new csv file as you type them in
 
