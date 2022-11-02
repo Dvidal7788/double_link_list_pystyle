@@ -3,9 +3,11 @@
 CC = gcc
 OBJ = double_link
 
-all:
-	$(CC) -o $(OBJ) double_link.c
+double_link: double_link.c
+	$(CC) -o $(OBJ) double_link_func.c double_link.c
 run:
-	./double_link
+	./$(OBJ)
 clean:
-	rm double_link
+	rm $(OBJ)
+	rm -rf *.exe
+	rm -rf *.o

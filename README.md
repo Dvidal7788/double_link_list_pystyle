@@ -11,5 +11,7 @@
     // - Remove last item (node) any time by typing "remove" or "r"
         // - Allows user to add the string "remove" or "r" as an item in the list with prompts that follow
         
-    // - If any errors occur during null checks etc, will append to error_log.csv a positive non-zero error # in column A, an error message in column B, and the timestamp in column C before returning that number from main.
-        // - If any errors while trying to append to error_log.csv, will return negative values. (All other error numbers will be positive)
+    // - If any errors occur during null checks etc:
+        // - Will append to error_log.csv:
+            // - a positive non-zero error # in column A, an error message in column B, and the timestamp in column C before returning that number from main.
+                // - If any errors while trying to append to error_log.csv, will return negative values. (All other error numbers will be positive)
