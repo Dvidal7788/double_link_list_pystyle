@@ -1,13 +1,21 @@
 # Makefile for double_link.c
 
-CC = gcc
-OBJ = double_link
+# for an executable, no .o files:
+# $(CC) -o $(BINARY) $(CFILES)
 
-double_link: double_link.c
-	$(CC) -o $(OBJ) double_link_func.c double_link.c
+CC = gcc
+BINARY = double_link
+CFILES = double_link_func.c main.c
+OBJECTS = double_link_func.o main.o
+
+all: $(BINARY)
+
+$(BINARY): $(OBJECTS)
+	$(CC) -o $@ $^
+
 run:
-	./$(OBJ)
+	./$(BINARY)
 clean:
-	rm $(OBJ)
+	rm -rf $(BINARY)
 	rm -rf *.exe
 	rm -rf *.o
