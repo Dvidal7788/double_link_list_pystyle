@@ -4,18 +4,18 @@
 # $(CC) -o $(BINARY) $(CFILES)
 
 CC = gcc
-BINARY = bin
+BIN = bin
 CFILES = double_link_func.c main.c
-OBJECTS = double_link_func.o main.o
+OBJS = double_link_func.o main.o
 
-all: $(BINARY)
+all: $(BIN)
 
-$(BINARY): $(OBJECTS)
+$(BIN): $(OBJS)
 	$(CC) -o $@ $^
 
 run:
-	./$(BINARY)
+	./$(BIN)
 clean:
-	rm -rf $(BINARY)
+	rm -rf $(BIN)
 	rm -rf *.exe
 	rm -rf *.o
