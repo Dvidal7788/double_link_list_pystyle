@@ -4,9 +4,9 @@
 # $(CC) -o $(BINARY) $(CFILES)
 
 CC = gcc
-BIN = bin
 CFILES = double_link_func.c main.c
 OBJS = double_link_func.o main.o
+BIN = bin
 
 all: $(BIN)
 
