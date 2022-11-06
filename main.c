@@ -83,37 +83,16 @@ int main(void)
         if (strcasecmp(n->s, "quit") == 0 || strcasecmp(n->s, "q") == 0)
         {
             // ---- QUIT ----
-            bool quit_choice = false;
 
-            // Keep asking until 1 or 2 is answered
-            int8_t c = 0;
-            while (c != '1' && c != '2') {
-                printf("\n\nDo you want to QUIT? (1 for YES. 2 for NO.)\n");
-                c = getchar();
-
-                if (c != '1' && c != '2') {
-                    printf("\n*Enter 1 for YES or 2 for NO only.\n\n");
-                    while (getchar() != '\n');
-                }
-            }
-            while (getchar() != '\n');
+            int8_t c = user_input_loop_1_2("\n\nDo you want to QUIT? (1 for YES. 2 for NO.)\n");
 
             // If NO to quitting:
             if (c == '2') {
-                // Reset c for loop condition
-                c = 0;
 
                 // Add "quit" to list?
                 // Keep asking until 1 or 2 is answered
-                while (c != '1' && c != '2') {
-                    printf("\n\nDo you want to add \"%s\" to the list? (1 for YES. 2 for NO.)\n", n->s);
-                    c = getchar();
-                    if (c != '1' && c != '2') {
-                        printf("\n*Enter 1 for YES or 2 for NO only.\n\n");
-                        while (getchar() != '\n');
-                    }
-                }
-                while (getchar() != '\n');
+                printf("\n\nDo you want to add \"%s\" to the list? (1 for YES. 2 for NO.)\n", n->s);
+                c = user_input_loop_1_2("");
 
                 // If NO to add "quit "to list: free node and continue. If yes, let it get to rest of code below on its own to append
                 // This is not a redundant if statement. The outer if(c=='2') above refers to previous question
@@ -137,34 +116,16 @@ int main(void)
         {
             // ---- REMOVE ----
 
-            // Keep asking until 1 or 2 is answered
-            int8_t c = 0;
-            while (c != '1' && c != '2') {
-                printf("\n\nDo you want to REMOVE to last item in the list? (1 for YES. 2 for NO.)\n");
-                c = getchar();
+            // Remove last item?
+            int8_t c = user_input_loop_1_2("\n\nDo you want to REMOVE to last item in the list? (1 for YES. 2 for NO.)\n");
 
-                if (c != '1' && c != '2') {
-                    printf("\n*Enter 1 for YES or 2 for NO only.\n\n");
-                    while (getchar() != '\n');
-                }
-            }
-            while (getchar() != '\n');
-
-            // -- IF NO to REMOVE --
+            // -- IF NO to remove --
             if (c == '2') {
-                // Reset c for loop condition
-                c = 0;
-                
+
                 // Keep asking until 1 or 2 is answered
-                while (c != '1' && c != '2') {
-                    printf("\n\nDo you want to ADD \"%s\" as an item to the list? (1 for YES. 2 for NO.)\n", n->s);
-                    c = getchar();
-                    if (c != '1' && c != '2') {
-                        printf("\n*Enter 1 for YES or 2 for NO only.\n\n");
-                        while (getchar() != '\n');
-                    }
-                }
-                while (getchar() != '\n');
+                printf("\n\nDo you want to ADD \"%s\" as an item to the list? (1 for YES. 2 for NO.)\n", n->s);
+                c = user_input_loop_1_2("");
+                
 
                 // If no, free node and continue. If yes, let it get to rest of code below on its own to append
                 if (c == '2') {

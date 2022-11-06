@@ -1,7 +1,6 @@
 #ifndef DOUBLE_LINK_HEADER_H
 #define DOUBLE_LINK_HEADER_H
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -25,5 +24,6 @@ void if_error(int8_t n, char *msg, node *head);
 void free_unused_node(node *n);
 void write_to_file(node *head, char *file_name);
 void append_to_file(node *head, node *last, char *file_name);
+int8_t user_input_loop_1_2(char *prompt);
 
 #endif // DOUBLE_LINK_HEADER_H

@@ -133,3 +133,25 @@ void free_unused_node(node *n)
     n = NULL;
     return;
 }
+
+//          -- user_input_loop_1_2 --
+int8_t user_input_loop_1_2(char *prompt)
+{
+    // This function will keep asking the user the prompt until either 1 or 2 is answered
+        // Using getchar() to easily be abe to change code to check for 'y'/'n' without havig to rewrite code with different function
+        // int8_t for max portability
+        int8_t c = 0;
+        while (c != '1' && c != '2') {
+            printf("%s", prompt);
+            c = getchar();
+
+            if (c != '1' && c != '2') {
+                printf("\n*Enter 1 for YES or 2 for NO only.\n\n");
+                while (getchar() != '\n');
+            }
+        }
+        while (getchar() != '\n');
+
+        prompt = NULL;
+        return c;
+}
