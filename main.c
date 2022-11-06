@@ -90,9 +90,6 @@ int main(void)
             while (c != '1' && c != '2') {
                 printf("\n\nDo you want to QUIT? (1 for YES. 2 for NO.)\n");
                 c = getchar();
-                if (c == EOF){
-
-                }
 
                 if (c != '1' && c != '2') {
                     printf("\n*Enter 1 for YES or 2 for NO only.\n\n");
@@ -101,8 +98,12 @@ int main(void)
             }
             while (getchar() != '\n');
 
+            // If NO to quitting:
             if (c == '2') {
+                // Reset c for loop condition
                 c = 0;
+
+                // Add "quit" to list?
                 // Keep asking until 1 or 2 is answered
                 while (c != '1' && c != '2') {
                     printf("\n\nDo you want to add \"%s\" to the list? (1 for YES. 2 for NO.)\n", n->s);
@@ -114,7 +115,8 @@ int main(void)
                 }
                 while (getchar() != '\n');
 
-                // If no, free node and continue. If yes, let it get to rest of code below on its own to append
+                // If NO to add "quit "to list: free node and continue. If yes, let it get to rest of code below on its own to append
+                // This is not a redundant if statement. The outer if(c=='2') above refers to previous question
                 if (c == '2') {
                     free_unused_node(n);
                     n = NULL;
@@ -150,7 +152,9 @@ int main(void)
 
             // -- IF NO to REMOVE --
             if (c == '2') {
+                // Reset c for loop condition
                 c = 0;
+                
                 // Keep asking until 1 or 2 is answered
                 while (c != '1' && c != '2') {
                     printf("\n\nDo you want to ADD \"%s\" as an item to the list? (1 for YES. 2 for NO.)\n", n->s);
