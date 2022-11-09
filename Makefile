@@ -1,21 +1,25 @@
-# Makefile for double_link.c
+# Makefile for double_link_list_pystyle
 
 CC = gcc
-CFILES = double_link_func.c main.c
-OBJS = double_link_func.o main.o
+SRC = src
+OBJ = obj
+CFILES = $(wildcard $(SRC)/*.c)
+OBJS = $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(CFILES))
 BIN = bin
 
 all:$(BIN)
 
-$(OBJS):$(CFILES)
-	gcc -c $^
+$(OBJ)/%.o:$(SRC)/%.c
+	gcc -c $^ -o $@
 
 $(BIN):$(OBJS)
 	gcc -o $@ $^
 
 run:
 	./$(BIN)
+
 clean:
 	rm -rf $(BIN)
+	rm -rf *.o $(OBJ)/*
 	rm -rf *.exe
-	rm -rf *.o
+	rm -rf a.out
