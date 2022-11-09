@@ -17,10 +17,10 @@
                 // - If any errors while trying to append to error_log.csv, will return negative values. (All other error numbers will be positive)
                 
         // List of error codes/error messages:
-            1: "Failure while scanning command line for name of new list."
-            2: "Failure while allocating memory for node."
-            3: "Failure while allocating memory for string.
-            4: "Failure while scanning from command line."
-            5: "Failure while re-allocating memory for string."
-            6: "Failure while appending last item in list to <filename.csv>"
-            7: "Failure while writing list to <filename.csv>"
+            Error code 1: "Failure while scanning command line for name of new list."
+            Error code 2: "Failure while allocating memory for node."
+            Error code 3: "Failure while allocating memory for string.
+            Error code 4: "Failure while scanning from command line."
+            Error code 5: "Failure while re-allocating memory for string."
+            Error code 6: "Failure while appending last item in list to <filename.csv>"
+            Error code 7: "Failure while writing list to <filename.csv>"
