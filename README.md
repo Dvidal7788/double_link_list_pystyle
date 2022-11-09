@@ -16,7 +16,7 @@
             // - a positive non-zero error # in column A, an error message in column B, and the timestamp in column C before returning that number from main.
                 // - If any errors while trying to append to error_log.csv, will return negative values. (All other error numbers will be positive)
                 
-       // LIST OF ERROR CODES/ERROR MESSAGES: 
+       // List of error codes/error messages:
             1: "Failure while scanning command line for name of new list."
             2: "Failure while allocating memory for node."
             3: "Failure while allocating memory for string.
