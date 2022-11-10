@@ -10,10 +10,10 @@ BIN = bin
 all:$(BIN)
 
 $(OBJ)/%.o:$(SRC)/%.c
-	gcc -c $^ -o $@
+	$(CC) -c $^ -o $@
 
 $(BIN):$(OBJS)
-	gcc -o $@ $^
+	$(CC) -o $@ $^
 
 run:
 	./$(BIN)
