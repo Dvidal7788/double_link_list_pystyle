@@ -10,13 +10,12 @@
     // - If any errors occur during null checks etc, will append to error_log.csv a positive non-zero error # in column A, an error message in column B, and the timestamp in column C before returning that number from main.
         // - If any errors while trying to append to error_log.csv, will return negative values. (All other error numbers will be positive)
 
-#include "header.h"
+#include <header.h>
 
 int main(void)
 {
     // MAIN POINTERS
     node *head = NULL, *last = NULL;
-    bool log = false;
     uint64_t node_count = 0;
 
     // ASK USER FOR FILE NAME

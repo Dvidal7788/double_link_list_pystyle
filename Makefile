@@ -1,25 +1,34 @@
 # Makefile for double_link_list_pystyle
 
 CC = gcc
+BIN = bin
+
 SRC = src
 OBJ = obj
+INCDIRS = . ./include
+
+DEPFLAGS = -MP -MD
+CFLAGS = -Wall -Wextra -g $(foreach D,$(INCDIRS),-I$(D)) $(DEPFLAGS)
+
 CFILES = $(wildcard $(SRC)/*.c)
-OBJS = $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(CFILES))
-BIN = bin
+OBJS = $(patsubst $(SRC)/%.c,%.o, $(CFILES))
+DEFILES = $(patsubst $(SRC)/%.c,$(OBJ)/%.d, $(CFILES))
 
 all:$(BIN)
 
-$(OBJ)/%.o:$(SRC)/%.c
-	$(CC) -c $^ -o $@
+%.o:$(SRC)/%.c
+	$(CC) $(CFLAGS) -c $^ -o $(OBJ)/$@
 
 $(BIN):$(OBJS)
-	$(CC) -o $@ $^
+	$(CC) -o $@ $(foreach O,$^,$(OBJ)/$(O))
 
 run:
 	./$(BIN)
 
 clean:
 	rm -rf $(BIN)
-	rm -rf *.o $(OBJ)/*
+	rm -rf *.o $(OBJ)/*.o
 	rm -rf *.exe
 	rm -rf a.out
+
+-include $(DEPFILES)
