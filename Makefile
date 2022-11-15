@@ -12,7 +12,7 @@ CFLAGS = -Wall -Wextra -g $(foreach D,$(INCDIRS),-I$(D)) $(DEPFLAGS)
 
 CFILES = $(wildcard $(SRC)/*.c)
 OBJS = $(patsubst $(SRC)/%.c,%.o, $(CFILES))
-DEFILES = $(patsubst $(SRC)/%.c,$(OBJ)/%.d, $(CFILES))
+DEPFILES = $(patsubst $(SRC)/%.c,$(OBJ)/%.d, $(CFILES))
 
 all:$(BIN)
 
