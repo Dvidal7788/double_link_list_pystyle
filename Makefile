@@ -31,7 +31,6 @@ distribute: clean
 clean:
 	rm -rf $(BIN)
 	rm -rf *.o $(OBJ)/*.o
-	rm -rf *.exe
-	rm -rf a.out
+	rm -rf *.exe a.out
 
 -include $(DEPFILES)
