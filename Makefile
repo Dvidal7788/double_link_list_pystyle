@@ -24,6 +24,9 @@ $(BIN):$(OBJS)
 
 run:
 	./$(BIN)
+	
+distribute: clean
+	tar zcvf dist.tgz *
 
 clean:
 	rm -rf $(BIN)
