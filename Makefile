@@ -30,7 +30,7 @@ $(BIN):$(OBJS)
 	@echo $(BIN)\* created $(TIME)
 
 run:
-	./$(BIN)
+	@./$(BIN)
 
 dist: clean
 	tar -czvf $(PROGRAM)_$(DATE).tgz *
