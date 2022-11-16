@@ -18,7 +18,7 @@ DEPFILES = $(patsubst $(SRC)/%.c,$(OBJ)/%.d, $(CFILES))
 DATE = $(shell date +%Y-%m-%d)
 TIME = $(shell date +%r)
 
-
+.PHONY: all
 all:$(BIN)
 
 %.o:$(SRC)/%.c
@@ -28,13 +28,15 @@ all:$(BIN)
 $(BIN):$(OBJS)
 	$(CC) -o $@ $(foreach O,$^,$(OBJ)/$(O))
 	@echo $(BIN)\* created $(TIME)
-
+	
+.PHONY: run
 run:
 	@./$(BIN)
 
 dist: clean
 	tar -czvf $(PROGRAM)_$(DATE).tgz *
-
+	
+.PHONY: clean
 clean:
 	rm -rf $(BIN)
 	rm -rf *.o $(OBJ)/*.o
