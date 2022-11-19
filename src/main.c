@@ -26,8 +26,8 @@ int main(void)
     int16_t scan_return = 0;
 
     // Scan command line
-    while (scan_return <= 0) scan_return = scanf("%50s", user_list_name);
-    if (scan_return <= 0) if_error(1, "Failure while scanning command line for name of new list.", head);
+    while (scan_return != EOF) scan_return = scanf("%50s", user_list_name);
+    if (scan_return == EOF) if_error(1, "Failure while scanning command line for name of new list.", head);
     while (getchar() != '\n');
 
     // Quit (if user chose to)
