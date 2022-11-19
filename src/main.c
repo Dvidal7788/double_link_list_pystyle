@@ -34,8 +34,8 @@ int main(void)
     if (strcasecmp(user_list_name, "quit") == 0 || strcasecmp(user_list_name, "q") == 0) return 0;
     
     // Add .csv to file name
-    uint8_t null_pos = strlen(user_list_name);
-    sprintf(&user_list_name[null_pos], ".csv");
+    uint8_t nul_pos = strlen(user_list_name);
+    sprintf(&user_list_name[nul_pos], ".csv");
 
 
     // -------------------- CREATE DOUBLE LINK LIST --------------------
