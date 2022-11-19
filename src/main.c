@@ -30,7 +30,9 @@ int main(void)
     if (scan_return <= 0) if_error(1, "Failure while scanning command line for name of new list.", head);
     while (getchar() != '\n');
 
+    // Quit (if user chose to)
     if (strcasecmp(user_list_name, "quit") == 0 || strcasecmp(user_list_name, "q") == 0) return 0;
+    
     // Add .csv to file name
     uint8_t null_pos = strlen(user_list_name);
     sprintf(&user_list_name[null_pos], ".csv");
