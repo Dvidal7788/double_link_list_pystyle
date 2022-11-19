@@ -18,14 +18,14 @@ int main(void)
     node *head = NULL, *last = NULL;
     uint64_t node_count = 0;
 
-    // ASK USER FOR FILE NAME
+    // ASK USER FOR - FILE NAME -
     printf("\n\n\t\t\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\t\t\t\t~~~~ CREATE YOUR OWN LIST ~~~~\n\t\t\t\t~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     printf("\n\n\n\t\t(Type \"quit\" any time to quit. Type \"remove\" to remove last entry.)\n\n\n");
     printf("ENTER NAME OF NEW LIST: (This will create a csv file with that name. Do not add \".csv\" or any other file extensions. That will be added for you.) \n");
     char user_list_name[51];
     int16_t scan_return = 0;
 
-    // Scan
+    // Scan command line
     while (scan_return <= 0) scan_return = scanf("%50s", user_list_name);
     if (scan_return <= 0) if_error(1, "Failure while scanning command line for name of new list.", head);
     while (getchar() != '\n');
