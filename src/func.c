@@ -96,7 +96,7 @@ void if_error(int8_t n, char *msg, node *head)
 
     // Append to error_log.csv
     // Open file
-    FILE *log_file = fopen("error_log.csv", "a");
+    FILE *log_file = fopen("./resources/error_log.csv", "a");
     if (log_file == NULL) {msg = NULL; head = NULL; exit(-1);}
 
     // Time
